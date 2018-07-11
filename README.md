@@ -9,8 +9,8 @@
 - [x] Create local React App
 - [ ] Update the changes to github
 - [ ] Create Basic/Static UI as per design
-- [ ] Create `edit` functionality
-- [ ] Create form with required fields (Static form)
+- [x] Create `edit` functionality
+- [x] Create form with required fields (Static form)
 - [ ] Add proptypes for form validations
 - [ ] Add Dynamic functionality to update form to UI
 - [ ] Create the link between the clients/vendors
