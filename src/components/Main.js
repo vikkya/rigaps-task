@@ -1,6 +1,67 @@
 import React from "react";
 
+function Addclient() {
+    return (
+        <div className="form-row">
+            <div className="col-md-4">
+                <label htmlFor="clientName">Client Name</label>
+                <input type="text" className="form-control" id="clientName" />
+            </div>
+            <div className="col-md-4">
+                <label htmlFor="clientWebsite">Client Website</label>
+                <input type="text" className="form-control" id="clientWebsite" />
+            </div>
+            <div className="col-md-2">
+                <button type="button" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    )
+}
+function AddVendor() {
+    return (
+        <div className="form-row">
+            <div className="col-md-4">
+                <label htmlFor="vendortName">Vendor Name</label>
+                <input type="text" className="form-control" id="clientName" />
+            </div>
+            <div className="col-md-4">
+                <label htmlFor="vendorWebsite">Vendor Website</label>
+                <input type="text" className="form-control" id="vendortWebsite" />
+            </div>
+            <div className="col-md-2">
+                <button type="button" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    )
+}
 class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            addClient: [],
+            addVendor: [],
+        }
+        this.createClient = this.createClient.bind(this);
+        this.createVendor = this.createVendor.bind(this);
+    }
+    createClient() {
+        this.setState((currenState) => {
+            return {
+                addClient: currenState.addClient.concat(<Addclient />)
+            }
+        })
+    }
+    createVendor() {
+        this.setState((currenState) => {
+            return {
+                addVendor: currenState.addVendor.concat(<AddVendor />)
+            }
+        })
+    }
     render() {
         return (
             <div className="container mt-5">
@@ -8,7 +69,7 @@ class Main extends React.Component {
                     <div className="col-12">
                         <a href="" className="float-right" data-toggle="modal" data-target="#addClients">
                             Edit
-                                                 </a>
+                        </a>
                         {/* modal for adding vendors and clients */}
                         <div className="modal fade" id="addClients" tabIndex="-1" role="dialog" >
                             <div className="modal-dialog modal-lg" role="document">
@@ -20,37 +81,27 @@ class Main extends React.Component {
                                     <div className="modal-body">
                                         <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</small>
                                         <div className="form-row">
-                                        <div className="col-md-4">
-                                            <label for="endClientName">End Client Name</label>
-                                            <input type="text" className="form-control" id="endClientName" />
+                                            <div className="col-md-4">
+                                                <label htmlFor="endClientName">End Client Name</label>
+                                                <input type="text" className="form-control" id="endClientName" />
+                                            </div>
+                                            <div className="col-md-4">
+                                                <label htmlFor="endClientWebsite">End Client Website</label>
+                                                <input type="text" className="form-control" id="endClientWebsite" />
+                                            </div>
                                         </div>
-                                        <div className="col-md-4">
-                                            <label for="endClientWebsite">End Client Website</label>
-                                            <input type="text" className="form-control" id="endClientWebsite" />
-                                        </div>
-                                        </div>
-                                        <p>Add Another Client</p>
-                                        <div className="form-row">
-                                        <div className="col-md-4">
-                                            <label for="clientName">Client Name</label>
-                                            <input type="text" className="form-control" id="clientName" />
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label for="clientWebsite">Client Website</label>
-                                            <input type="text" className="form-control" id="clientWebsite" />
-                                        </div>
-                                        </div>
-                                        <p>Add Another Vendor</p>
-                                        <div className="form-row">
-                                        <div className="col-md-4">
-                                            <label for="vendortName">Vendor Name</label>
-                                            <input type="text" className="form-control" id="clientName" />
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label for="vendorWebsite">Vendor Website</label>
-                                            <input type="text" className="form-control" id="vendortWebsite" />
-                                        </div>
-                                        </div>
+                                        <a href="javascript:void(0)" onClick={this.createClient}>Add Another Client</a>
+
+                                        {this.state.addClient.map((client, index) => {
+                                            return (<div key={index}>{client}</div>)
+                                        })}
+                                        <br />
+                                        <a href="javascipt:void(0)" onClick={this.createVendor}>Add Another Vendor</a>
+                                        {this.state.addVendor.map((vendor, index) => {
+                                            return <div key={index}>{vendor}</div>
+
+
+                                        })}
                                     </div>
                                     <div className="modal-footer justify-content-center">
                                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancle</button>
